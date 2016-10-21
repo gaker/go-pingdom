@@ -31,6 +31,7 @@ type HttpCheck struct {
 	PostData                 string            `json:"postdata,omitempty"`
 	RequestHeaders           map[string]string `json:"requestheaders,omitempty"`
 	ContactIds               []int             `json:"contactids,omitempty"`
+	AlertPolicy              int               `json:"alert_policy,omitempty"`
 }
 
 // PingCheck represents a Pingdom ping check
@@ -90,6 +91,10 @@ func (ck *HttpCheck) PutParams() map[string]string {
 	// Convert auth
 	if ck.Username != "" {
 		m["auth"] = fmt.Sprintf("%s:%s", ck.Username, ck.Password)
+	}
+
+	if ck.AlertPolicy != 0 {
+		m["alert_policy"] = strconv.Itoa(ck.AlertPolicy)
 	}
 
 	// Convert headers

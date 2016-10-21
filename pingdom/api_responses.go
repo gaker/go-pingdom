@@ -20,6 +20,7 @@ type PingdomError struct {
 // CheckResponse represents the json response for a check from the Pingdom API
 type CheckResponse struct {
 	ID                       int               `json:"id"`
+	AlertPolicy              int               `json:"alert_policy,omitempty"`
 	Name                     string            `json:"name"`
 	Resolution               int               `json:"resolution,omitempty"`
 	SendToAndroid            bool              `json:"sendtoandroid,omitempty"`
